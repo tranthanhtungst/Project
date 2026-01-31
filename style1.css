@@ -1,0 +1,357 @@
+/* =======================================================
+   1. RESET & BIẾN MÀU SẮC (GIỮ NGUYÊN THEME CŨ)
+   ======================================================= */
+:root {
+    --primary-color: #0077b6;   /* Xanh biển đậm */
+    --secondary-color: #00b4d8; /* Xanh cyan */
+    --accent-color: #90e0ef;    /* Xanh băng */
+    --text-dark: #023e8a;       /* Chữ tiêu đề */
+    --text-body: #333333;       /* Chữ nội dung */
+    --bg-page: #f0f2f5;         /* Nền xám nhạt toàn trang (Giống video) */
+    --white: #ffffff;
+    --border-color: #E0E0E0;
+    --container-width: 1200px;
+}
+
+html { scroll-behavior: smooth; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-body);
+    line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+img { max-width: 100%; height: auto; display: block; }
+ul { list-style: none; }
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* =======================================================
+   2. HEADER & NAV (GIỮ NGUYÊN CHỨC NĂNG CŨ)
+   ======================================================= */
+#hero-section { background-color: #000; line-height: 0; }
+#hero-section video { width: 100%; height: auto; }
+
+#main-nav {
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky; top: 0; z-index: 1000;
+    padding: 10px 0;
+}
+
+.nav-flex { display: flex; justify-content: space-between; align-items: center; }
+.nav-list { display: flex; gap: 15px; }
+
+.nav-item {
+    display: block; padding: 8px 16px;
+    background-color: #eef6ff; color: var(--text-dark);
+    font-weight: 700; border-radius: 20px; font-size: 0.95rem;
+}
+.nav-item:hover, .nav-item.active { background-color: var(--primary-color); color: var(--white); }
+
+/* Avatar Hover System */
+.nav-avatars { display: flex; align-items: center; gap: 15px; }
+.avatar, .member-hover { position: relative; width: 40px; height: 40px; cursor: pointer; }
+.member-avatar, .avatar img {
+    width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+    border: 2px solid var(--secondary-color); transition: transform 0.2s;
+}
+.member-avatar:hover, .avatar img:hover { transform: scale(1.1); }
+
+.avatar-overlay {
+    position: absolute; top: 120%; right: 0;
+    background: rgba(0,0,0,0.8); color: #fff; padding: 5px 10px;
+    border-radius: 4px; width: max-content; opacity: 0; visibility: hidden;
+    transition: 0.3s; font-size: 0.8rem; z-index: 1001;
+}
+.avatar:hover .avatar-overlay { opacity: 1; visibility: visible; top: 110%; }
+
+/* Card Member Hover */
+.member-panel {
+    position: absolute; top: 50px; right: 0; width: 300px;
+    background-color: var(--white); border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2); padding: 20px;
+    display: none; z-index: 1100; border: 1px solid var(--border-color);
+}
+.member-hover:hover .member-panel { display: block; animation: fadeIn 0.3s; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+.member-header { display: flex; gap: 15px; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+.member-avatar-large { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; }
+.member-title h2 { font-size: 1.1rem; color: var(--text-dark); margin: 0; }
+.member-title span { font-size: 0.85rem; color: var(--primary-color); font-weight: bold; }
+.member-body h3 { font-size: 0.9rem; text-transform: uppercase; color: #888; font-weight: 700; }
+.member-body ul { padding-left: 20px; list-style: disc; font-size: 0.9rem; }
+.member-body p { font-size: 0.9rem; font-style: italic; color: #555; }
+
+/* =======================================================
+   3. BỐ CỤC CHÍNH (MAIN LAYOUT) - GIỐNG VIDEO
+   ======================================================= */
+.page-background {
+    background-color: var(--bg-page); /* Nền xám tổng thể */
+    padding: 40px 0;
+    min-height: 100vh;
+}
+
+.layout-grid {
+    display: grid;
+    /* Cột Nội dung (3 phần) - Cột Mục lục (1 phần) -> Layout Blog chuẩn */
+    grid-template-columns: 3fr 1fr; 
+    gap: 30px;
+    align-items: start;
+}
+
+/* --- PHẦN CONTENT BÊN TRÁI --- */
+.content-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* QUAN TRỌNG: TẠO KHỐI TRẮNG (CARD) CHO NỘI DUNG */
+.content-card {
+    background-color: var(--white); /* Nền trắng */
+    border-radius: 8px;             /* Bo góc */
+    padding: 40px;                  /* Khoảng cách lề trong */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Đổ bóng nhẹ để nổi lên khỏi nền xám */
+    border: 1px solid #e1e4e8;
+}
+
+.section-heading {
+    font-size: 1.8rem;
+    color: var(--text-dark);
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.job-item { margin-bottom: 30px; }
+.job-item img {
+    border-radius: 6px; margin-bottom: 15px; width: 100%; max-height: 350px; object-fit: cover;
+}
+.job-item h3 { font-size: 1.4rem; color: var(--primary-color); margin-bottom: 10px; }
+.job-item p { margin-bottom: 10px; text-align: justify; }
+
+.divider {
+    border: 0; border-top: 1px solid #eee; margin: 30px 0;
+}
+
+/* --- PHẦN MỤC LỤC BÊN PHẢI (SIDEBAR) --- */
+.sidebar-column {
+    position: sticky;
+    top: 90px; /* Dính lại khi cuộn, cách menu bar 1 khoảng */
+}
+
+.toc-container {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid #e1e4e8;
+}
+
+.toc-title {
+    font-size: 1.2rem; margin-bottom: 15px; color: var(--text-dark);
+    padding-bottom: 10px; border-bottom: 1px solid #eee;
+}
+
+.toc-list li { margin-bottom: 8px; }
+.toc-link { font-weight: 600; color: #333; font-size: 0.95rem; }
+.toc-link:hover { color: var(--primary-color); }
+
+.sub-toc { margin-top: 5px; padding-left: 15px; border-left: 2px solid #eee; }
+.sub-toc li { margin-bottom: 5px; }
+.sub-toc a { font-weight: 400; font-size: 0.85rem; color: #666; }
+.sub-toc a:hover { color: var(--primary-color); }
+
+/* =======================================================
+   4. FOOTER (GIỮ NGUYÊN)
+   ======================================================= */
+#site-footer {
+    background-color: #0d1b2a; color: #e0e1dd; padding: 30px 0; margin-top: 0;
+}
+.footer-flex { display: flex; align-items: center; gap: 30px; }
+.footer-logo img { width: 80px; height: auto; border-radius: 50%; border: 2px solid var(--accent-color); }
+.footer-text { font-size: 0.9rem; }
+
+/* =======================================================
+   5. RESPONSIVE (MOBILE)
+   ======================================================= */
+@media (max-width: 900px) {
+    .layout-grid {
+        grid-template-columns: 1fr; /* Về 1 cột trên mobile */
+    }
+    
+    .sidebar-column {
+        position: static; /* Hết sticky */
+        order: -1; /* Đưa mục lục lên đầu trang trên mobile cho dễ chọn */
+        margin-bottom: 20px;
+    }
+
+    .nav-flex { flex-direction: column; gap: 15px; }
+    .content-card { padding: 20px; } /* Giảm padding cho đỡ chật */
+}
+.nav-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ===== AVATAR TRONG NAV ===== */
+.nav-avatars {
+    display: flex;
+    gap: 12px;
+}
+
+.nav-avatars img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+    cursor: pointer;
+    transition: transform 0.25s ease;
+}
+
+.nav-avatars img:hover {
+    transform: scale(1.15);
+}
+.avatar-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 90, 160, 0.9);
+    color: #fff;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 11px;
+    text-align: center;
+    gap: 2px;
+
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all 0.35s ease;
+}
+
+.avatar:hover .avatar-overlay {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.avatar-overlay a {
+    font-size: 10px;
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* ====== AVATAR HOVER ====== */
+.member-hover {
+    position: relative;
+    display: inline-block;
+}
+
+/* Avatar nhỏ */
+.member-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+/* ====== PANEL ====== */
+.member-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 420px;
+    height: 100vh;
+
+    background: #ffffff;
+    box-shadow: 6px 0 20px rgba(0,0,0,0.15);
+
+    transform: translateX(-100%);
+    transition: transform 0.45s ease;
+
+    z-index: 9999;
+    padding: 40px 30px;
+}
+
+/* Hover kích hoạt */
+.member-hover:hover .member-panel {
+    transform: translateX(0);
+}
+
+/* ===== HEADER ===== */
+.member-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 40px;
+}
+
+.member-avatar-large {
+    width: 72px; /* ~1.5 lần chữ */
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.member-title h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0;
+    color: #0b2c4d;
+}
+
+.member-title span {
+    font-size: 15px;
+    color: #e63946;
+    font-weight: 600;
+}
+
+/* ===== BODY ===== */
+.member-body {
+    font-family: system-ui, sans-serif;
+}
+
+.member-section {
+    margin-bottom: 32px;
+}
+
+.member-section h3 {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #6c757d;
+    margin-bottom: 12px;
+}
+
+.member-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.member-section ul li {
+    font-size: 16px;
+    padding: 6px 0;
+    color: #212529;
+}
+
+.member-section p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #212529;
+}
