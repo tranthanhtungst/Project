@@ -477,3 +477,115 @@ img {
     #hero-section { height: 300px; }
     .hero-content h1 { font-size: 2rem; }
 }
+
+
+
+/* ================= ABOUT PAGE LAYOUT ================= */
+#about-page {
+    margin-top: 20px;
+}
+
+.about-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+        "avatar links"
+        "images links"
+        "text links"
+        "gif links";
+    gap: 20px;
+}
+
+/* (1) AVATAR */
+.about-avatar {
+    grid-area: avatar;
+}
+.about-avatar img {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* (5) LINK BLOCK */
+.about-links {
+    grid-area: links;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.link-box {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.link-box h3 {
+    font-size: 16px;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+}
+
+.link-box a {
+    font-size: 13px;
+    color: var(--primary-color);
+    word-break: break-all;
+}
+
+.link-box p {
+    font-size: 14px;
+    margin-top: 8px;
+    color: var(--text-light);
+}
+
+/* (2)(3)(4) IMAGES */
+.about-images {
+    grid-area: images;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.about-images img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* (6) TEXT CONTENT */
+.about-text {
+    grid-area: text;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    line-height: 1.7;
+}
+
+.about-text h2 {
+    color: var(--text-dark);
+    margin-bottom: 15px;
+}
+
+.about-text p {
+    margin-bottom: 12px;
+    color: var(--text-body);
+}
+
+/* (7) GIF */
+.about-gif {
+    grid-area: gif;
+    text-align: center;
+}
+
+.about-gif img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.about-gif p {
+    font-size: 14px;
+    margin-top: 8px;
+    color: var(--text-light);
+}
